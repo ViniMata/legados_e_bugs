@@ -3,6 +3,7 @@ class Filme:
         self.titulo = titulo
         self.categoria = categoria
         self.duracao = duracao
+        self.disponível = True
 
 class Cliente:
     def __init__(self, nome, cpf):
@@ -11,8 +12,11 @@ class Cliente:
         self.locacoes = []
 
     def alugar_filme(self, filme):
-        self.locacoes.append(filme)
-        print(f'{self.nome} alugou "{filme.titulo}"')
+        if filme.disponivel:
+            self.locacoes.append(filme)
+            print(f'{self.nome} alugou "{filme.titulo}"')
+        else:
+            print(f'O filme "{filme.titulo}" ja está alugado.')
 
     def devolver_filme(self, filme):
         if filme in self.locacoes:
@@ -49,5 +53,3 @@ class Locadora:
             cliente.devolver_filme(filme)
         else:
             print(f'Filme ou cliente não encontrado.')
-
-# Ainda não resolvi
